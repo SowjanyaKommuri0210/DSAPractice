@@ -7,8 +7,13 @@ public class HeapifyArray {
         buildMaxHeap(arr);
 
         for (int num : arr) {
-            System.out.print(num + " ");
+            System.out.println(num + " ");
+        }
 
+        buildMinHeap(arr);
+
+        for (int num : arr) {
+            System.out.println(num + " ");
         }
     }
 
@@ -42,6 +47,35 @@ public class HeapifyArray {
         int n = arr.length;
         for(int i = n/2-1;i>=0;i--){
             heapify(arr,n,i);
+        }
+    }
+
+    public static void buildMinHeap(int[] arr){
+       int n= arr.length;
+
+        for (int i = n/2-1;i>=0;i--){
+            minHeapify(arr,n,i);
+        }
+    }
+
+    public static void minHeapify(int[] arr,int n,int i){
+        int left=2*i+1;
+        int right=2*i+2;
+
+        int smallest=i;
+        if(left<n && arr[left]<arr[smallest]){
+            smallest=left;
+        }
+
+        if(right<n && arr[right]<arr[smallest]){
+            smallest=right;
+        }
+
+        if(smallest != i){
+            int temp = arr[smallest];
+            arr[smallest]=arr[i];
+            arr[i]=temp;
+            minHeapify(arr,n,smallest);
         }
     }
 }
